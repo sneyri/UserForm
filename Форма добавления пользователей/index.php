@@ -1,13 +1,11 @@
 <?php
 include("config.php");
 
-// ============= ПОЛУЧАЕМ ПОИСКОВЫЙ ЗАПРОС =============
 $search = '';
 if (isset($_GET['search'])) {
     $search = trim($_GET["search"]);
 }
 
-// ============= ФОРМИРУЕМ ЕДИНЫЙ SQL ЗАПРОС =============
 if (!empty($search)) {
     $safe_search = mysqli_real_escape_string($conn, $search);
     $sql = "SELECT * FROM new_users
@@ -17,13 +15,10 @@ if (!empty($search)) {
     $sql = "SELECT * FROM new_users ORDER BY id_user DESC";
 }
 
-// ============= ВЫПОЛНЯЕМ ЗАПРОС (ОДИН РАЗ) =============
 $result = mysqli_query($conn, $sql);
 
-// ============= ПЕРЕМЕННЫЕ ДЛЯ СООБЩЕНИЙ =============
 $message = '';
 $message_type = '';
-// ====================================================
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +41,6 @@ $message_type = '';
             </div>
         <?php endif; ?>
 
-        <!-- ============= БЛОК ПОИСКА ============= -->
         <div class="search-container">
             <form action="" method="get">
                 <input type="text"
@@ -68,9 +62,7 @@ $message_type = '';
                 </div>
             <?php endif; ?>
         </div>
-        <!-- ====================================== -->
 
-        <!-- ============= ФОРМА ДОБАВЛЕНИЯ ============= -->
         <div class="form-container">
             <h2>➕ Добавление нового пользователя</h2>
 
@@ -100,9 +92,7 @@ $message_type = '';
                 <button type="submit">Добавить</button>
             </form>
         </div>
-        <!-- =========================================== -->
 
-        <!-- ============= ТАБЛИЦА С РЕЗУЛЬТАТАМИ ============= -->
         <div class="table-container">
             <h2>📋 Список пользователей</h2>
 
@@ -159,7 +149,6 @@ $message_type = '';
                 </div>
             <?php endif; ?>
         </div>
-        <!-- ================================================= -->
     </div>
 </body>
 
